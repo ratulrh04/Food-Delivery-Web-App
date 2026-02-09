@@ -1,5 +1,4 @@
 import { useState } from "react"
-
 export default function RestuaranSingUp(){
 
     const[email, setEmail]=useState('')
@@ -11,11 +10,20 @@ export default function RestuaranSingUp(){
     const[contact, setContact]=useState('')
 
     // Form singup event handler
-    const handleSingup=(event)=>{
-        event.preventDefault(); 
-        console.log(email,password,c_password,name,city,address,contact)
-    }
-   
+    const handleSingup=async(event)=>{
+
+    event.preventDefault(); 
+    // console.log(email,password,c_password,name,city,address,contact)
+
+    // SingUp Data Post Method 
+    let result = await fetch('http://localhost:3000/api/restuarants',{
+    method:"POST",
+    body:JSON.stringify({email,password,name,city,address,contact})
+    })
+
+    result = await result.json();
+    console.log(result)
+}
     return(
         <div>
               <h1>This is SingUp Page</h1>
