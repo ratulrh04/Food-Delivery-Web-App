@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 export default function RestuaranSingUp(){
 
@@ -8,22 +9,27 @@ export default function RestuaranSingUp(){
     const[city, setCity]=useState('')
     const[address, setAddress]=useState('')
     const[contact, setContact]=useState('')
+    const router = useRouter()
 
     // Form singup event handler
     const handleSingup=async(event)=>{
-
     event.preventDefault(); 
-    // console.log(email,password,c_password,name,city,address,contact)
-
     // SingUp Data Post Method 
-    let result = await fetch('http://localhost:3000/api/restuarants',{
+    let response = await fetch('http://localhost:3000/api/restuarants',{
     method:"POST",
     body:JSON.stringify({email,password,name,city,address,contact})
     })
 
-    result = await result.json();
-    console.log(result)
-}
+    response = await response.json();
+    if(response.success){
+      console.log(response)
+      const {result} = response;
+      delete result.password;
+      localStorage.setItem("restuarantUser",JSON.stringify(result))
+      router.push("/restuarant/dashboard")
+    }
+    }
+    
     return(
         <div>
               <h1>This is SingUp Page</h1>
@@ -63,4 +69,4 @@ export default function RestuaranSingUp(){
         </div>
     )
 
-}
+} 
