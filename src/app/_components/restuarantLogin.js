@@ -7,15 +7,24 @@ export default function RestuarantLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     if (!email || !password) {
       setError(true); 
+      return false
     }else{
       setError(false);  
     }
-    console.log(email, password);
+   
+    let response = await fetch('http://192.168.1.217:3000/api/restuarants',{
+    method:"POST",
+    body:JSON.stringify({email,password,login:true})
+    })
+    response = await response.json();
+    if(response.success){
+       alert("Login Succsessful")
+    }
   };
 
   return (
