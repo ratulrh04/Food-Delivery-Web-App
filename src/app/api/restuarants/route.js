@@ -14,15 +14,22 @@ export async function GET() {
 
 export async function POST(request){
     let payload = await request.json();
-    let result = false
+    let result;
+    let success = false
     await mongoose.connect(connectionString);
     if(payload.login){
     //  use it for login api
     result = await restuarantSchema.findOne({email:payload.email, password:payload.password})
+    if (result){
+      success = true
+    }
     }else{
-    // use if for lingUp api
+    // use if for singUp api
     let restuarant = new restuarantSchema(payload);
     result = await restuarant.save();
+      if (result){
+      success = true
     }
-    return NextResponse.json({result, success:true}) ;
+    }
+    return NextResponse.json({result, success}) ;
 }

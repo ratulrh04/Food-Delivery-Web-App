@@ -34,7 +34,7 @@ export default function RestuaranSingUp(){
         setError(false)
     }
     // SingUp Data Post Method 
-    let response = await fetch('http://192.168.1.217:3000/api/restuarants',{
+    let response = await fetch('http://localhost:3000/api/restuarants',{
     method:"POST",
     body:JSON.stringify({email,password,name,city,address,contact})
     })
@@ -46,6 +46,9 @@ export default function RestuaranSingUp(){
       delete result.password;
       localStorage.setItem("restuarantUser",JSON.stringify(result))
       router.push("/restuarant/dashboard")
+      alert("SingUp Successfull")
+    }else{
+      alert("Singup Failed")
     }
     }
     

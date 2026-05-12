@@ -1,11 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function RestuarantLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const router = useRouter()
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -17,13 +19,19 @@ export default function RestuarantLogin() {
       setError(false);  
     }
    
-    let response = await fetch('http://192.168.1.217:3000/api/restuarants',{
+    let response = await fetch('http://localhost:3000/api/restuarants',{
     method:"POST",
     body:JSON.stringify({email,password,login:true})
     })
     response = await response.json();
-    if(response.success){
-       alert("Login Succsessful")
+  if(response.success){
+      console.log(response)
+      const {result} = response;
+      delete result.password;
+      localStorage.setItem("restuarantUser",JSON.stringify(result))
+      router.push("/restuarant/dashboard")
+    }else{
+      alert("Login Failed")
     }
   };
 
