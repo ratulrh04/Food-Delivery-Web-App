@@ -1,31 +1,87 @@
 'use client'
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
+const EditFoodItem = () => {
 
-const EditFoodItem = (props) => {
-     const router = useRouter()
+    const router = useRouter();
+    const params = useParams();
+
+    const foodId = params.id;
 
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
-    const [error, setError]=useState(false);
+    const [error, setError] = useState(false);
 
-   const handleEditFoodItem = async (event) => {
-    event.preventDefault();
-    // error validate useState code:
-    if(!name || !price || !image || description){
-        setError(true);
-    };
-};
+    useEffect(() => {
+        handleFoodItem();
+    }, []);
+
+    const handleFoodItem = async () => {
+
+        let response = await fetch(
+            'http://localhost:3000/api/foods/edit/' + foodId
+        );
+
+        response = await response.json();
+
+        console.log(response);
+
+        if (response.success) {
+
+            setName(response.result.name);
+            setPrice(response.result.price);
+            setImage(response.result.image);
+            setDescription(response.result.description);
+        }
+    }
+
+    const handleEditFoodItem = async (event) => {
+
+        event.preventDefault();
+
+        if (!name || !price || !image || !description) {
+            setError(true);
+            return false;
+        }else{
+            setError(false)
+        }
+
+        let response = await fetch(
+            'http://localhost:3000/api/foods/edit/' + foodId,
+            {
+                method: "PUT",
+                body: JSON.stringify({
+                    name,
+                    price,
+                    image,
+                    description
+                })
+            }
+        );
+
+        response = await response.json();
+
+        if (response.success) {
+            alert("Food Item Updated Successfully");
+            router.push("../dashboard");
+        } else {
+            alert("Something went wrong");
+        }
+    }
 
     return (
         <div>
+
             <form className="container" onSubmit={handleEditFoodItem}>
-             <h1>Update Food Items</h1>
+
+                <h1>Update Food Item</h1>
+
                 <div className="input-wrapper">
+
                     <input
                         type="text"
                         placeholder="Enter Food Name"
@@ -33,10 +89,18 @@ const EditFoodItem = (props) => {
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
-                    {error && !name && <span className="input-error">Please Enter a valid Name</span>}
+
+                    {
+                        error && !name &&
+                        <span className="input-error">
+                            Please Enter Valid Name
+                        </span>
+                    }
+
                 </div>
 
                 <div className="input-wrapper">
+
                     <input
                         type="text"
                         placeholder="Enter Price"
@@ -44,21 +108,37 @@ const EditFoodItem = (props) => {
                         value={price}
                         onChange={(event) => setPrice(event.target.value)}
                     />
-                    {error && !price && <span className="input-error">Please Enter a valid Price</span>}
+
+                    {
+                        error && !price &&
+                        <span className="input-error">
+                            Please Enter Valid Price
+                        </span>
+                    }
+
                 </div>
 
                 <div className="input-wrapper">
+
                     <input
                         type="text"
-                        placeholder="Enter Image Path"
+                        placeholder="Enter Image URL"
                         className="input-field"
                         value={image}
                         onChange={(event) => setImage(event.target.value)}
                     />
-                    {error && !image && <span className="input-error">Please Enter a valid ImagePath</span>}
+
+                    {
+                        error && !image &&
+                        <span className="input-error">
+                            Please Enter Valid Image URL
+                        </span>
+                    }
+
                 </div>
 
                 <div className="input-wrapper">
+
                     <input
                         type="text"
                         placeholder="Enter Description"
@@ -66,18 +146,34 @@ const EditFoodItem = (props) => {
                         value={description}
                         onChange={(event) => setDescription(event.target.value)}
                     />
-                    {error && !description && <span className="input-error">Please Enter a valid Description</span>}
+
+                    {
+                        error && !description &&
+                        <span className="input-error">
+                            Please Enter Valid Description
+                        </span>
+                    }
+
                 </div>
 
                 <div className="input-wrapper">
+
                     <button type="submit" className="button">
                         Update Food Item
                     </button>
-                     <button onClick={()=>router.push('../dashboard')} className="button">
-                        Back to Food Item
+
+                    <button
+                        type="button"
+                        className="button"
+                        onClick={() => router.push("../dashboard")}
+                    >
+                        Back To Dashboard
                     </button>
+
                 </div>
+
             </form>
+
         </div>
     )
 }

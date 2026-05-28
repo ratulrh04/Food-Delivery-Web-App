@@ -1,3 +1,45 @@
+/* Root Css */
+*:focus{
+  outline:none;
+}
+
+/* Header Code Start Here :- */
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.header-wrapper ul{
+    display: flex;
+}
+.header-wrapper ul li{
+    list-style-type:none;
+    padding: 5px;
+}
+.header-wrapper ul li a{
+    text-decoration: none;
+}
+.header-wrapper ul li button{
+    background-color: transparent;
+    border: none;
+    color:blueviolet ;
+    font-size: 15px;
+    cursor: pointer;
+}
+/* Header Code End Here :- */
+
+/* Footer code Start here */
+.footer-wrapper{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    background-color: #fff;
+}
+/* Footer Code End Here :- */
+
+
+/* All input css start here */
 .input-wrapper{
     margin: 10px;
 }
@@ -34,3 +76,39 @@ table, th, td{
 table, td, button{
     margin: 5px;
 }
+/* All input css end here */
+
+
+/* Main Page Css start here */
+ .main-page-banner{
+    background-image: url('/assets/banner-image.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding:30px;
+    height: 230px;
+    color: #fff;
+    text-align: center;
+ }
+ .input-wrapper{
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: auto;
+    width: 70%;
+ }
+ .select-input{
+    height: 40px;
+    border: none;
+    width: 30%;
+ }
+ .search-search{
+    height: 40px;
+    border: none;
+    width: 65%;
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+ }
+
+/* Main Page Css end here */
