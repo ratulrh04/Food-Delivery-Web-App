@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 
-const AddFoodItem = () => {
+const AddFoodItem = (props) => {
 
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -33,6 +33,7 @@ const AddFoodItem = () => {
     response = await response.json();
     if (response.success) {
         alert("Food item added");
+        props.setAddItem(false)
     }else{
         alert("Food item not added")
     }

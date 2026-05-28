@@ -25,3 +25,12 @@
     color: red;
     font-size: 13px;
 }
+
+table, th, td{
+    border: 2px solid #000;
+    border-collapse:collapse;
+    padding: 10px;
+}
+table, td, button{
+    margin: 5px;
+}

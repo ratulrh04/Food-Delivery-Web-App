@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose";
 
-const foodSchema = new mongoose.Schema({
+export const foodSchema = new mongoose.Schema({
     name: String, //those property are choise depends on html/useState input value name
     price: Number, //those property are choise depends on html/useState input value name
     image: String, //those property are choise depends on html/useState input value name

@@ -4,6 +4,7 @@ import RestaurantHeader from "@/app/_components/RestuarantHeader";
 import "./../style.css"
 import AddFoodItem from "@/app/_components/AddFoodItem";
 import { useState } from "react";
+import FoodItemList from "@/app/_components/FoodItemList";
 
 const Dashboard = () => {
 
@@ -17,11 +18,15 @@ const Dashboard = () => {
              <button onClick={()=>setAddItem(true)}>Add Food</button>
              <button onClick={()=>setAddItem(false)}>Dashborad</button>
              {
-               addItem ? <AddFoodItem/> : <h1>Welcome to dashboard</h1>
+               addItem ? <AddFoodItem setAddItem={setAddItem}/> : <FoodItemList/>
              }
+             
 
         </div>
     );
 };
 
 export default Dashboard;
+
+
+
