@@ -2,10 +2,12 @@
 
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function FoodItemList (){
 
     const [foodItems, setFoodItems] = useState([])
+    const router = useRouter()
 
     const loadFoodItems = async () => {
         const restuarantData = JSON.parse(localStorage.getItem('restuarantUser'));
@@ -70,7 +72,7 @@ export default function FoodItemList (){
 
                             <td>
                                 <button onClick={()=>deleteFoodItem(item._id)}>Delete</button>
-                                <button>Edit</button>
+                                <button onClick={()=>router.push('dashboard/'+item._id)}>Edit</button>
                             </td>
                         </tr>
                     ))
