@@ -80,7 +80,7 @@ table, td, button{
 
 
 /* Main Page Css start here */
- .main-page-banner{
+ .main-page-banner, .restuarant-page-banner{
     background-image: url('/assets/banner-image.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -112,3 +112,57 @@ table, td, button{
  }
 
 /* Main Page Css end here */
+
+/* loaction list Css start Here */
+.location-list{
+    color: black;
+    list-style-type: none;
+    text-align: left;
+    position: absolute;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    margin-left:-5px ;
+    border: 1px solid #ccc;
+}
+.location-list li{
+    width: 100px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+/* loaction list Css End Here */
+
+/* restuarant cards css start here */
+   .restuarant-list-container{
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     margin-top: 40px;
+     margin-bottom: 50px;
+   }
+   .restuarnt-wrapper{
+    width: 45%;
+    background-color: orange;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid aaa;
+    border-radius: 5px;
+    cursor: pointer;
+   }
+   .restuarnt-wrapper .heading-wrapper , .restuarnt-wrapper .address-wrapper {
+     padding-left: 15px;
+     display: flex;
+     justify-content: flex-start;
+   }
+   .restuarnt-wrapper h5{
+    margin-left: 15px;
+   }
+   .restuarnt-wrapper address{
+    margin-left: 5px;
+   }
+   .restuarant-page-banner h1{
+    font-family:60px;
+   }
+
+/* restuarant cards css end here */
