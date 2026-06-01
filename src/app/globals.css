@@ -166,3 +166,42 @@ table, td, button{
    }
 
 /* restuarant cards css end here */
+
+/* restuarant details page css start here */
+.details-wrapper{
+    display: flex;
+    background-color: orange;
+}
+.details-wrapper h4{
+    width: 50%;
+}
+.food-item-wrapper{
+    margin-top: 50px;
+    margin-top: 50px;
+}
+.food-item-wrapper .list-item{
+    padding: 5px;
+    color: orange;
+    font-weight: bold;
+    border-bottom: 1px solid orange;
+    display: flex;
+    text-decoration: none;
+}
+.food-item-wrapper .list-item button{
+    color: white;
+    border: none;
+    background-color: orange;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.food-item-wrapper .list-item .item-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    padding-right: 20px;
+}
+.food-item-wrapper .list-item .description{
+    font-weight: lighter;
+}
+/* restuarant details page css end here */

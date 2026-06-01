@@ -113,7 +113,7 @@ export default function Home() {
         {
           restaurants.map((item, index) => (
 
-            <div onClick={()=>router.push('explore/'+item.name)} className="restuarnt-wrapper" key={index}>
+            <div onClick={()=>router.push('explore/'+item.name+"?id="+item._id)} className="restuarnt-wrapper" key={index}>
 
               <div className="heading-wrapper">
                 <h3>{item.name}</h3>
