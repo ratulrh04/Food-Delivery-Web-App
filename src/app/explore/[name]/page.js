@@ -12,23 +12,29 @@ const Page = ({ params, searchParams }) => {
 
     const [restaurantDetails, setRestaurantDetails] = useState(null);
     const [foodItems, setFoodItems] = useState([]);
+
     const [cartData, setCartData] = useState(null);
-    const [cartStorage, setCartStorage] = useState([]);
+    const [removeCartData, setRemoveCartData] = useState(null);
+
     const [cartIds, setCartIds] = useState([]);
 
     useEffect(() => {
+
         loadRestaurantDetails();
 
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartStorage(cart);
+        const cart =
+            JSON.parse(localStorage.getItem('cart')) || [];
 
-        const ids = cart.map((item) => item._id);
-        setCartIds(ids);
+        setCartIds(
+            cart.map((item) => item._id)
+        );
 
     }, []);
 
     const loadRestaurantDetails = async () => {
+
         try {
+
             const id = resolvedSearchParams.id;
 
             let response = await fetch(
@@ -38,10 +44,18 @@ const Page = ({ params, searchParams }) => {
             response = await response.json();
 
             if (response.success) {
-                setRestaurantDetails(response.details);
-                setFoodItems(response.foodItems || []);
+
+                setRestaurantDetails(
+                    response.details
+                );
+
+                setFoodItems(
+                    response.foodItems || []
+                );
             }
+
         } catch (error) {
+
             console.log(error);
         }
     };
@@ -49,93 +63,142 @@ const Page = ({ params, searchParams }) => {
     const addToCart = (item) => {
 
         setCartData(item);
+        setRemoveCartData(null);
 
-        let updatedCart = [...cartStorage, item];
-
-        setCartStorage(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-        setCartIds(updatedCart.map((cartItem) => cartItem._id));
+        setCartIds((prev) => [
+            ...prev,
+            item._id
+        ]);
     };
 
     const removeFromCart = (id) => {
 
-        let updatedCart = cartStorage.filter(
-            (item) => item._id !== id
+        setRemoveCartData(id);
+        setCartData(null);
+
+        const localIds = cartIds.filter(
+            (item) => item !== id
         );
 
-        setCartStorage(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-        setCartIds(updatedCart.map((item) => item._id));
+        setCartIds(localIds);
     };
 
     return (
         <>
-            <CustomerHeader cartData={cartData} />
+            <CustomerHeader
+                cartData={cartData}
+                removeCartData={removeCartData}
+            />
 
             <div className="restuarant-page-banner">
-                <h1>{decodeURIComponent(resolvedParams.name)}</h1>
+                <h1>
+                    {decodeURIComponent(
+                        resolvedParams.name
+                    )}
+                </h1>
             </div>
 
-            {restaurantDetails && (
-                <div className="details-wrapper">
-                    <h3>Contact: {restaurantDetails.contact}</h3>
-                    <h3>City: {restaurantDetails.city}</h3>
-                    <h3>Address: {restaurantDetails.address}</h3>
-                    <h3>Email: {restaurantDetails.email}</h3>
-                </div>
-            )}
+            {
+                restaurantDetails && (
+                    <div className="details-wrapper">
+
+                        <h3>
+                            Contact :
+                            {restaurantDetails.contact}
+                        </h3>
+
+                        <h3>
+                            City :
+                            {restaurantDetails.city}
+                        </h3>
+
+                        <h3>
+                            Address :
+                            {restaurantDetails.address}
+                        </h3>
+
+                        <h3>
+                            Email :
+                            {restaurantDetails.email}
+                        </h3>
+
+                    </div>
+                )
+            }
 
             <div className="food-item-wrapper">
 
                 {
-                    foodItems.length > 0 ? (
+                    foodItems.length > 0 ?
+
                         foodItems.map((item, index) => (
-                            <div key={index} className="list-item">
+
+                            <div
+                                key={index}
+                                className="list-item"
+                            >
 
                                 <Image
                                     className="item-image"
                                     src={item.image}
                                     alt={item.name}
-                                    width={100}
-                                    height={100}
+                                    width={120}
+                                    height={120}
                                 />
 
                                 <div>
+
                                     <h4>{item.name}</h4>
-                                    <p>Price: {item.price}</p>
+
+                                    <p>
+                                        Price : {item.price}
+                                    </p>
+
                                     <p className="description">
                                         {item.description}
                                     </p>
 
                                     {
-                                        cartIds.includes(item._id) ? (
-                                            <button
-                                                onClick={() =>
-                                                    removeFromCart(item._id)
-                                                }
-                                            >
-                                                Remove From Cart
-                                            </button>
-                                        ) : (
-                                            <button
-                                                onClick={() =>
-                                                    addToCart(item)
-                                                }
-                                            >
-                                                Add To Cart
-                                            </button>
-                                        )
+                                        cartIds.includes(item._id) ?
+
+                                            (
+                                                <button
+                                                    onClick={() =>
+                                                        removeFromCart(
+                                                            item._id
+                                                        )
+                                                    }
+                                                >
+                                                    Remove From Cart
+                                                </button>
+                                            )
+
+                                            :
+
+                                            (
+                                                <button
+                                                    onClick={() =>
+                                                        addToCart(
+                                                            item
+                                                        )
+                                                    }
+                                                >
+                                                    Add To Cart
+                                                </button>
+                                            )
                                     }
 
                                 </div>
 
                             </div>
+
                         ))
-                    ) : (
-                        <h1>No Food Item Added For Now</h1>
-                    )
+
+                        :
+
+                        <h1>
+                            No Food Item Added For Now
+                        </h1>
                 }
 
             </div>

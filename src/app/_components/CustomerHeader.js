@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import Image from "next/image";
@@ -10,58 +10,77 @@ const CustomerHeader = (props) => {
   const [cartItem, setCartItem] = useState([]);
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedCart =
+      JSON.parse(localStorage.getItem("cart")) || [];
+
     setCartItem(storedCart);
     setCartNumber(storedCart.length);
   }, []);
 
+  // Add To Cart
   useEffect(() => {
+
     if (!props.cartData) return;
 
-    if (cartItem.length > 0) {
+    let updatedCart = [];
 
-      if (cartItem[0].resto_id !== props.cartData.resto_id) {
+    if (
+      cartItem.length > 0 &&
+      cartItem[0].resto_id !== props.cartData.resto_id
+    ) {
 
-        const newCart = [props.cartData];
-
-        setCartItem(newCart);
-        setCartNumber(1);
-
-        localStorage.setItem(
-          "cart",
-          JSON.stringify(newCart)
-        );
-
-      } else {
-
-        const newCart = [...cartItem, props.cartData];
-
-        setCartItem(newCart);
-        setCartNumber(newCart.length);
-
-        localStorage.setItem(
-          "cart",
-          JSON.stringify(newCart)
-        );
-      }
+      updatedCart = [props.cartData];
 
     } else {
 
-      const newCart = [props.cartData];
-
-      setCartItem(newCart);
-      setCartNumber(1);
-
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(newCart)
+      const alreadyExist = cartItem.find(
+        (item) => item._id === props.cartData._id
       );
+
+      if (alreadyExist) return;
+
+      updatedCart = [...cartItem, props.cartData];
     }
+
+    setCartItem(updatedCart);
+    setCartNumber(updatedCart.length);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
+    );
 
   }, [props.cartData]);
 
+  // Remove From Cart
+  useEffect(() => {
+
+    if (!props.removeCartData) return;
+
+    const updatedCart = cartItem.filter(
+      (item) => item._id !== props.removeCartData
+    );
+
+    setCartItem(updatedCart);
+    setCartNumber(updatedCart.length);
+
+    if (updatedCart.length > 0) {
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(updatedCart)
+      );
+
+    } else {
+
+      localStorage.removeItem("cart");
+    }
+
+  }, [props.removeCartData]);
+
   return (
     <div className="header-wrapper">
+
       <div className="logo">
         <Image
           src="https://static.vecteezy.com/system/resources/thumbnails/011/874/816/small/chef-logo-design-illustration-restaurant-logo-vector.jpg"
@@ -72,6 +91,7 @@ const CustomerHeader = (props) => {
       </div>
 
       <ul>
+
         <li>
           <Link href="/">Home</Link>
         </li>
@@ -85,13 +105,18 @@ const CustomerHeader = (props) => {
         </li>
 
         <li>
-          <Link href="/">Cart ({cartNumber})</Link>
+          <Link href="/cart">
+            Cart ({cartNumber})
+          </Link>
+        </li>
+        <li>
+          <Link href="/">
+            Add Restaurant
+          </Link>
         </li>
 
-        <li>
-          <Link href="/">Add Restaurant</Link>
-        </li>
       </ul>
+
     </div>
   );
 };
