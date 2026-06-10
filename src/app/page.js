@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import CustomerHeader from "./_components/CustomerHeader";
+
 import RestuarantFooter from "./_components/RestuarentFooter";
 import { useRouter } from 'next/navigation';
+import RestaurantHeader from "./_components/RestuarantHeader";
 
 export default function Home() {
 
@@ -57,7 +58,7 @@ export default function Home() {
   return (
     <main>
 
-      <CustomerHeader />
+      <RestaurantHeader/>
 
       <div className="main-page-banner">
 
