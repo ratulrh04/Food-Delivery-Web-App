@@ -205,3 +205,359 @@ table, td, button{
     font-weight: lighter;
 }
 /* restuarant details page css end here */
+
+/* TrySomething More Today Page Css start here */
+.hero-section {
+  width: 100%;
+  min-height: 440px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 96px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.top-partner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.top-partner p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #6f6f6f;
+}
+
+.delivery-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.delivery-badge {
+  height: 48px;
+  border-radius: 8px;
+  padding: 0 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+.delivery-badge span {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.delivery-badge small {
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+.olivas-badge {
+  background: #3367ef;
+}
+
+.volume-badge {
+  background: #f04424;
+}
+
+.olivas-icon,
+.volume-icon {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.olivas-icon {
+  border-radius: 50%;
+  position: relative;
+}
+
+.olivas-icon::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 7px;
+  background: #3367ef;
+  transform: rotate(45deg);
+  top: 11px;
+  left: 2px;
+  border-radius: 4px;
+}
+
+.volume-icon {
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.hero-section h1 {
+  margin: 0;
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #222222;
+}
+
+.hero-description {
+  max-width: 690px;
+  margin: 32px auto 0;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #2c2c2c;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 380px;
+    padding: 70px 20px 0;
+  }
+
+  .top-partner {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .top-partner p {
+    font-size: 16px;
+  }
+
+  .hero-section h1 {
+    font-size: 42px;
+  }
+
+  .hero-description {
+    font-size: 18px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .delivery-badge {
+    height: 44px;
+    padding: 0 9px;
+  }
+
+  .delivery-badge span {
+    font-size: 14px;
+  }
+
+  .delivery-badge small {
+    font-size: 13px;
+  }
+
+  .hero-section h1 {
+    font-size: 34px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+}
+/* TrySomething More Today Page Css End here */
+
+/* OurSignatureDishes Page Css Start here */
+ .signature-dishes {
+  width: 100%;
+  background: #ffffff;
+  padding: 20px 20px 70px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.signature-dishes-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 42px;
+}
+
+.signature-dishes-header h2 {
+  margin: 0 0 12px;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #2b0f05;
+}
+
+.signature-dishes-header p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #20130e;
+}
+
+.signature-dishes-grid {
+  max-width: 1050px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.signature-dish-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.signature-burger-card {
+  background: #fff2e8;
+}
+
+.signature-pizza-card {
+  background: #f1e5ff;
+}
+
+.signature-subway-card {
+  background: #e7fffa;
+}
+
+.signature-dish-image {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.signature-food-img {
+  object-fit: cover;
+}
+
+.signature-dish-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.signature-cart-icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signature-dish-body {
+  padding: 22px 18px 18px;
+}
+
+.signature-dish-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.signature-dish-title h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #171717;
+}
+
+.signature-dish-title span {
+  font-size: 20px;
+  font-weight: 800;
+  color: #171717;
+  white-space: nowrap;
+}
+
+.signature-dish-body p {
+  margin: 0;
+  min-height: 58px;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #1f1f1f;
+}
+
+.signature-dish-footer {
+  padding: 0 18px 14px;
+}
+
+.signature-order-btn {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.signature-orange-btn {
+  background: #ff650f;
+  box-shadow: 0 5px 0 #9f3c08;
+}
+
+.signature-purple-btn {
+  background: #7616c9;
+  box-shadow: 0 5px 0 #4a0a83;
+}
+
+.signature-green-btn {
+  background: #209d8f;
+  box-shadow: 0 5px 0 #126b61;
+}
+
+@media (max-width: 992px) {
+  .signature-dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .signature-dish-image {
+    height: 270px;
+  }
+}
+
+@media (max-width: 640px) {
+  .signature-dishes {
+    padding: 30px 16px 50px;
+  }
+
+  .signature-dishes-header h2 {
+    font-size: 32px;
+  }
+
+  .signature-dishes-header p {
+    font-size: 14px;
+  }
+
+  .signature-dishes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .signature-dish-image {
+    height: 260px;
+  }
+}
+/* OurSignatureDishes Page Css End here */

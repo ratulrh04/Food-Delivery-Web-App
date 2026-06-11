@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import RestuarantFooter from "./_components/RestuarentFooter";
 import { useRouter } from 'next/navigation';
 import RestaurantHeader from "./_components/RestuarantHeader";
+import TrySomeThingMoreToday from "./_components/TrySomethingMoreToday";
+import OurSignatureDishes from "./_components/OurSignatureDishes";
 
 export default function Home() {
 
@@ -108,6 +110,11 @@ export default function Home() {
         </div>
 
       </div>
+
+      {/* Try Something More Today */}
+      <TrySomeThingMoreToday/>
+      {/* OurSignatureDishes */}
+      <OurSignatureDishes/>
 
       <div className="restuarant-list-container">
 
